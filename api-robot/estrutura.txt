@@ -1,0 +1,23 @@
+
+
+API
+    REST 
+        /auth 
+
+
+envio:
+
+JSON: 
+        {
+            "email":"antonioaguiar@gmail.com",
+            "password":"hahaha"
+        }
+
+resposta:
+
+    200 (success)
+    msg: "Tudo certo, você foi autenticado"
+
+
+importar no robot: pip install robotframework-requests
+
