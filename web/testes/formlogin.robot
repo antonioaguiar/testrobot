@@ -7,12 +7,38 @@ Test Teardown   Encerra sessao
 *** Test Cases ***
 
 Login com sucesso
+    [tags]                  login_valid
+    Enviar Login            stark                           jarvis!      
+    #Validar mensagem retorno                                Olá, Tony Stark. Você acessou a área logada!
+    Validar nome usuario logado                             Tony Stark
+
+Senha inválida
+    [tags]                  login_error
+    Enviar Login            stark                           abc123   
+    Validar mensagem retorno                                Senha é invalida!
+ 
+
+Usuário não existe
+    [tags]                  user_notfound
+    Enviar Login            usuario1                        abc123
+    Validar mensagem retorno                                O usuário informado não está cadastrado!
+
+
+*** Keywords ***    
+Enviar Login
+    [Arguments]             ${uname}                        ${upass}
     Go To                   ${url}/login
-    # buscar elementos pelo tipo e nome, poderia ser por ID, mas vamos complicar
-    Input Text              css:input[name=username]        stark
-    Input Text              css:input[name=password]        jarvis!
+    Input Text              css:input[name=username]        ${uname}
+    Input Text              css:input[name=password]        ${upass}
     Click Element           class:btn-login     
 
-    Page Should Contain     Olá, Tony Stark. Você acessou a área logada!
+Validar mensagem retorno
+    [Arguments]             ${umessage}
+    ${message}=             Get WebElement                  id:flash
+    Should Contain          ${message.text}                 ${umessage}
 
 
+Validar nome usuario logado
+    [Arguments]             ${nome_usuario}
+    ${message}=             Get WebElement                  id:flash
+    Should Contain          ${message.text}                 Olá, ${nome_usuario}. Você acessou a área logada!

@@ -11,7 +11,7 @@ Library           Collections
 Autorizando o usuário
     Dado que o usuário submeteu suas credenciais de acesso:
     ...     antonioaguiar@gmail.com             hahaha
-    Quanto eu faço uma requisição POST para o serviço / auth
+    Quando eu faço uma requisição POST para o serviço / auth
     Então o código de status deve ser           200
     E a mensagem na resposta igual a            Tudo certo, você foi autenticado!
 
@@ -19,7 +19,7 @@ Autorizando o usuário
 Senha do usuário inválida
     Dado que o usuário submeteu suas credenciais de acesso:
     ...     antonioaguiar@gmail.com             kkkkkk
-    Quanto eu faço uma requisição POST para o serviço / auth
+    Quando eu faço uma requisição POST para o serviço / auth
     Então o código de status deve ser           401
      
 
@@ -31,7 +31,7 @@ Dado que o usuário submeteu suas credenciais de acesso:
     &{payload}=     Create Dictionary       email=${email}      password=${password}
     Set Test Variable   ${payload}
 
-Quanto eu faço uma requisição POST para o serviço / auth
+Quando eu faço uma requisição POST para o serviço / auth
     Create Session      api             http://localhost:3000
     #     
     ${resp}=            Post Request    api     /auth    json=${payload}
