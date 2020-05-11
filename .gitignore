@@ -11,11 +11,6 @@
 .DS_Store
 Thumbs.db
 $RECYCLE.BIN/
-
  web/.vscode
  web/resultados
  webdriver/
- api-robot/.vscode
- api-robot/resultados
- api-robot/src/node_modules
- 

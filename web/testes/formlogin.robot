@@ -42,3 +42,5 @@ Validar nome usuario logado
     [Arguments]             ${nome_usuario}
     ${message}=             Get WebElement                  id:flash
     Should Contain          ${message.text}                 Olá, ${nome_usuario}. Você acessou a área logada!
+
+    
